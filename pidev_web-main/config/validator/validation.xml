@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="App\Entity\Sponsor">
+        <property name="nom">
+            <constraint name="Regex">
+                <option name="pattern">/\d/</option>
+                <option name="match">false</option>
+                <option name="message">Your name cannot contain a number</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="max">50</option>
+                <option name="minMessage">
+                    Your first name must be at least {{ limit }} characters long
+                </option>
+                <option name="maxMessage">
+                    Your first name cannot be longer than {{ limit }} characters
+                </option>
+            </constraint>
+        </property>
+        <property name="type">
+            <constraint name="Type">
+                <option name="type">string</option>
+            </constraint>
+        </property>
+        <property name="email">
+            <constraint name="Email">
+                <option name="message">The email "{{ value }}" is not a valid email.</option>
+            </constraint>
+        </property>
+    </class>
+    <class name="App\Entity\Evenement">
+        <property name="nom">
+        <constraint name="Regex">
+        <option name="pattern">/\d/</option>
+        <option name="match">false</option>
+        <option name="message">Your name cannot contain a number</option>
+        </constraint>
+        </property>
+        <property name="dateEvenement">
+            <constraint name="Date"/>
+        </property>
+
+    </class>
+</constraint-mapping>

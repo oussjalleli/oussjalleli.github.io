@@ -1,0 +1,7 @@
+teneleven_geolocator:
+  locatables:
+    dealer: #this is the alias for your model - name this anything you like
+      repository: teneleven_sandbox.repository.dealer #this is the service ID of the repository for this model
+      radius: 300 #(optional) default limit for search area (in miles)
+      limit: 50 #(optional) limit the number of results
+      address_properties: [street, city, state, zip] #these are properties of your model which together make up a geo-coder-friendly address

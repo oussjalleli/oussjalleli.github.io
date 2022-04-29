@@ -1,0 +1,29 @@
+# config/validator/validation.yaml
+App\Entity\Sponsor:
+  properties:
+    nom:
+      - Length:
+            min: 2
+            max: 50
+            minMessage: 'Your first name must be at least {{ limit }} characters long'
+            maxMessage: 'Your first name cannot be longer than {{ limit }} characters'
+      - Regex:
+          pattern: '/\d/'
+          match: false
+          message: Your name cannot contain a number
+    type:
+        - Type: string
+    email:
+      - Email:
+          message: The email "{{ value }}" is not a valid email.
+App\Entity\Evenement:
+  properties:
+   nom:
+    - Regex:
+        pattern: '/\d/'
+        match: false
+        message: Your name cannot contain a number
+  dateEvenement:
+    - Date: ~
+  imageEvent:
+    - Image: ~

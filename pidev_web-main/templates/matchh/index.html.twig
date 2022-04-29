@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Match index{% endblock %}
+
+{% block body %}
+    <h1>Match index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>IdMatch</th>
+            <th>Date</th>
+            <th>Serveur</th>
+            <th>Etat</th>
+            <th>Type</th>
+            <th>Score1</th>
+            <th>Score2</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for matchh in matchs %}
+            <tr>
+                <td>{{ matchh.idMatch }}</td>
+                <td>{{ matchh.date ? matchh.date|date('Y-m-d') : '' }}</td>
+                <td>{{ matchh.serveur }}</td>
+                <td>{{ matchh.etat }}</td>
+                <td>{{ matchh.type }}</td>
+                <td>{{ matchh.score1 }}</td>
+                <td>{{ matchh.score2 }}</td>
+                <td>
+                    <a href="{{ path('supprimer_match', {'id': matchh.idMatch}) }}">supprimer</a>
+                    <a href="{{ path('modifier_match', {'id': matchh.idMatch}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="16">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ajouter_match') }}">Create new</a>
+{% endblock %}

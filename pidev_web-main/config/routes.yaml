@@ -1,0 +1,6 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+teneleven_sandbox_dealers:
+  path:  /dealers
+  defaults: { _controller: teneleven.geolocator.controller:locate, entity: dealer, template: ~ }
