@@ -133,7 +133,7 @@ class EvenementController extends AbstractController
   }
 
   /**
-   * @Route("/s/dateSearch", name="dateSearch")
+   * @Route("/dateSearch", name="dateSearch")
    */
   public function searchAction(Request $request)
   {
