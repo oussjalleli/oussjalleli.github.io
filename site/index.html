@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oussama Jalleli — Signal Processing, Computer Vision &amp; Multimodal AI</title>
+<meta name="description" content="M.Sc. researcher at INRS working across signal processing, computer vision, and multimodal AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#020806;
+  --panel:#06120d;
+  --green:#00ff41;
+  --moss:#0e7a2f;
+  --red:#e5182b;
+  --ink:#d4f5dc;
+  --dim:#7fb08f;
+  --mono:'Share Tech Mono',ui-monospace,monospace;
+  --sans:'IBM Plex Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--ink);font:400 1.05rem/1.65 var(--sans);overflow-x:hidden}
+a{color:var(--green);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:1020px;margin:0 auto;padding:0 24px}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100vh;display:grid;align-items:center;padding:80px 0;overflow:hidden;border-bottom:1px solid var(--moss)}
+#rain{position:absolute;inset:0;width:100%;height:100%;opacity:.4}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 60% at 35% 50%,rgba(2,8,6,.85),transparent 80%),
+             repeating-linear-gradient(180deg,rgba(0,0,0,.25) 0 1px,transparent 1px 3px)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
+.prompt{font:400 1rem var(--mono);color:var(--green);margin-bottom:14px}
+.prompt::after{content:"█";margin-left:4px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+h1{font:400 clamp(2.4rem,7vw,4.6rem)/1.02 var(--mono);color:#fff;text-shadow:0 0 18px rgba(0,255,65,.65);margin-bottom:18px}
+h1 em{font-style:normal;color:var(--green)}
+.lede{max-width:32em;font-size:1.15rem;margin-bottom:28px;color:var(--ink)}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{font:400 1rem var(--mono);padding:12px 24px;text-decoration:none;color:var(--black);background:var(--green);border:1px solid var(--green)}
+.btn.alt{background:transparent;color:var(--green)}
+.btn.red{background:transparent;color:var(--red);border-color:var(--red)}
+.btn:hover{box-shadow:0 0 16px var(--green)}
+.btn.red:hover{box-shadow:0 0 16px var(--red)}
+
+/* ---------- XR PROFILE FRAME ---------- */
+.xr{position:relative;width:min(100%,340px);aspect-ratio:4/5;margin:0 auto;background:var(--panel)}
+.xr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(.85)}
+.xr .ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:var(--dim);font:400 .9rem/1.5 var(--mono);padding:24px;
+  background:repeating-linear-gradient(45deg,rgba(0,255,65,.06) 0 8px,transparent 8px 16px)}
+.xr .ph svg{width:46%;margin:0 auto 12px;display:block;stroke:var(--moss);fill:none;stroke-width:3}
+.xr img+.ph{display:none}
+.xr .c{position:absolute;width:34px;height:34px;border:3px solid var(--green);filter:drop-shadow(0 0 6px var(--green))}
+.c.tl{top:-10px;left:-10px;border-right:0;border-bottom:0}.c.tr{top:-10px;right:-10px;border-left:0;border-bottom:0}
+.c.bl{bottom:-10px;left:-10px;border-right:0;border-top:0}.c.br{bottom:-10px;right:-10px;border-left:0;border-top:0}
+.scan{position:absolute;left:0;right:0;height:3px;background:var(--green);box-shadow:0 0 14px var(--green);opacity:.7;animation:scan 4.5s linear infinite}
+@keyframes scan{0%{top:0}100%{top:100%}}
+.tag{position:absolute;font:400 .78rem var(--mono);padding:3px 8px;background:rgba(2,8,6,.85);color:var(--green);border:1px solid var(--moss)}
+.tag.t1{top:14px;left:14px}.tag.t2{bottom:14px;right:14px;color:var(--red);border-color:var(--red)}
+
+/* ---------- NAV ---------- */
+nav{position:sticky;top:0;z-index:5;background:rgba(2,8,6,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--moss)}
+nav .wrap{display:flex;gap:24px;overflow-x:auto;padding-top:12px;padding-bottom:12px;white-space:nowrap}
+nav a{color:var(--dim);text-decoration:none;font:400 .98rem var(--mono)}
+nav a:hover{color:var(--green)}
+
+/* ---------- SECTIONS ---------- */
+section{padding:84px 0 8px}
+h2{font:400 clamp(1.4rem,4vw,2rem)/1.2 var(--mono);color:var(--green);margin-bottom:26px}
+h2::before{content:"$ cd ";color:var(--dim)}
+.panel{background:var(--panel);border:1px solid var(--moss);border-left:4px solid var(--green);padding:24px 28px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0}
+.chips li{padding:5px 12px;border:1px solid var(--moss);font:400 .92rem var(--mono);color:var(--green)}
+.chips li:nth-child(4n){border-color:var(--red);color:var(--red)}
+.pub{margin-bottom:20px}
+.pub b{font-weight:600;color:#fff}
+.venue{color:var(--dim);font-size:.96rem}
+
+.log{position:relative;padding-left:32px;list-style:none}
+.log::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--moss)}
+.log>li{position:relative;margin-bottom:22px}
+.log>li::before{content:"";position:absolute;left:-32px;top:28px;width:16px;height:16px;background:var(--black);border:2px solid var(--green)}
+.log h3{font:400 1.1rem/1.35 var(--mono);color:#fff}
+.log .meta{color:var(--green);font:400 .92rem var(--mono);margin:4px 0 10px}
+.log ul{padding-left:1.1em}
+.log ul li{margin-bottom:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.grid .panel h3{font:400 1.05rem var(--mono);margin-bottom:8px;color:var(--green)}
+.grid .panel p{color:var(--dim);font-size:.98rem}
+footer{margin-top:90px;padding:56px 0 70px;border-top:1px solid var(--moss);background:linear-gradient(180deg,transparent,rgba(0,255,65,.07))}
+footer .wrap{text-align:center}
+footer h2::before{content:"$ ./"}
+footer .btns{margin:22px 0 26px;justify-content:center}
+footer small{color:var(--dim);font-family:var(--mono)}
+
+@media (max-width:760px){.hero .wrap{grid-template-columns:1fr}.xr{width:min(80%,300px);order:-1}.hero{padding:56px 0}}
+@media (prefers-reduced-motion:reduce){.scan{animation:none;top:50%}.prompt::after{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <canvas id="rain" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <p class="prompt">root@oussama:~$ whoami</p>
+      <h1>Oussama<br><em>Jalleli</em></h1>
+      <p class="lede">M.Sc. researcher at INRS working across signal processing, computer vision, and multimodal AI. I build systems that extract patterns from complex data and connect information across modalities.</p>
+      <div class="btns">
+        <a class="btn" href="cv.pdf" target="_blank" rel="noopener">View CV (PDF)</a>
+        <a class="btn alt" href="https://scholar.google.ca/citations?hl=en&amp;user=AeALRWwAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+        <a class="btn alt" href="#publications">Read my papers</a>
+        <a class="btn alt" href="#contact">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="xr">
+      <img src="image.jpg" alt="Portrait of Oussama Jalleli" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+      <div class="ph"><div>
+        <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="22" r="11"/><path d="M10 58c2-14 11-21 22-21s20 7 22 21"/></svg>
+        Add profile.jpg<br>to this folder
+      </div></div>
+      <span class="scan" aria-hidden="true"></span>
+      <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+      <span class="tag t1">TRACKING: OUSSAMA</span>
+      <span class="tag t2">MODE: XR</span>
+    </div>
+  </div>
+</header>
+
+<nav aria-label="Sections"><div class="wrap">
+  <a href="#research">./research</a><a href="#publications">./publications</a><a href="#experience">./experience</a><a href="#education">./education</a><a href="#skills">./skills</a><a href="#contact">./contact</a>
+</div></nav>
+
+<main class="wrap">
+
+<section id="research">
+  <h2>research</h2>
+  <div class="panel">
+    <p style="margin-bottom:18px">My work brings together signal processing, computer vision, and multimodal AI to make sense of complex data. I develop methods for learning across modalities, capturing spatial and temporal patterns, and building robust, interpretable systems. Applications include visual understanding, audio-visual analysis, physiological sensing, and media forensics.</p>
+    <ul class="chips">
+      <li>Signal processing</li><li>Computer vision</li><li>Multimodal AI</li><li>Representation learning</li>
+      <li>Audio-visual learning</li><li>Video understanding</li><li>Physiological signal analysis</li><li>Trustworthy and explainable AI</li>
+      <li>Robustness and generalization</li><li>Media forensics</li><li>Self-supervised and transfer learning</li>
+    </ul>
+  </div>
+</section>
+
+<section id="publications">
+  <h2>publications</h2>
+  <div class="panel">
+    <p class="pub"><b>Leveraging Speech-to-Facial-Electromyography Mapping for Singing Voice Deepfake Source Tracing: A Pilot Experiment</b><br>
+      O. Jalleli, Y. Zhu, T. Falk<br><span class="venue">ECCV, 2026</span></p>
+    <p class="pub"><b>Audio-Visual Cross-Attention for Improved Deepfake Video Detection and Forgery Localization</b><br>
+      O. Jalleli, Y. Zhu, T. H. Falk<br><span class="venue">IEEE International Conference on Systems, Man, and Cybernetics (SMC), Vienna, 2025 ·
+      <a href="https://doi.org/10.1109/SMC58881.2025.11342953">DOI 10.1109/SMC58881.2025.11342953</a></span></p>
+  </div>
+</section>
+
+<section id="experience">
+  <h2>experience</h2>
+  <ol class="log">
+    <li class="panel"><h3>Graduate Researcher, MuSAE Lab (INRS-UQO)</h3><div class="meta">Gatineau, QC · Jan 2025 to present</div>
+      <ul><li>Building EMG processing pipelines that check physiological consistency in multimodal systems.</li>
+      <li>Designing computer-vision and multimodal models for audio-visual analysis, temporal segmentation, and anomaly localization.</li>
+      <li>Applying self-supervised and transfer learning to generalize across unseen manipulations.</li></ul></li>
+    <li class="panel"><h3>Mitacs Globalink Mentor</h3><div class="meta">Remote / Gatineau, QC · Apr 2026 to present</div>
+      <ul><li>Mentoring international undergraduates through 12-week research internships at Canadian universities.</li></ul></li>
+    <li class="panel"><h3>AI Research Intern, MuSAE Lab (INRS-UQO)</h3><div class="meta">Gatineau, QC · May to Aug 2024</div>
+      <ul><li>Built a pipeline from raw media to decision output, with real-time joint audio/video forensic inference.</li></ul></li>
+    <li class="panel"><h3>Research Collaborator, Behavioural Neuroscience Lab, Lund University</h3><div class="meta">Lund, Sweden · Nov 2023 to Aug 2024</div>
+      <ul><li>Developed 3D pose estimation and gait time-series analysis for automated phenotyping in mouse models.</li></ul></li>
+    <li class="panel"><h3>AI Engineering Intern, IP-Label</h3><div class="meta">Tunis, Tunisia · Jun to Aug 2023</div>
+      <ul><li>Deployed an LLM app that turns telemetry time series into reports through a REST API, cutting turnaround from hours to minutes.</li>
+      <li>Set up CI/CD and drift monitoring with Jenkins, Prometheus and Grafana.</li></ul></li>
+  </ol>
+</section>
+
+<section id="education">
+  <h2>education</h2>
+  <div class="grid">
+    <div class="panel"><h3>M.Sc. Telecommunications</h3><p>INRS, Montréal · 2025 to present<br>Supervisor: Prof. Tiago H. Falk</p></div>
+    <div class="panel"><h3>B.Eng. Data Science</h3><p>Esprit School of Engineering, Ariana · 2021 to 2024</p></div>
+    <div class="panel"><h3>Preparatory Cycle</h3><p>ISSAT, Sousse · Mathematics and Physics · 2019 to 2021</p></div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>skills</h2>
+  <div class="grid">
+    <div class="panel"><h3>Machine learning</h3><p>PyTorch, TensorFlow, Keras · CNNs, Transformers, GANs, GNNs, LLMs</p></div>
+    <div class="panel"><h3>Signal processing &amp; computer vision</h3><p>OpenCV, librosa, FFmpeg · image and video analysis, audio, biosignals, time series, 3D pose</p></div>
+    <div class="panel"><h3>MLOps and HPC</h3><p>Docker, Jenkins, Git, SLURM, MPI, CUDA, multi-GPU training</p></div>
+    <div class="panel"><h3>Languages</h3><p>Python, C/C++, MATLAB, SQL · Arabic, French, English, German (A1)</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>contact</h2>
+    <p>Open to research collaborations and questions about my work.</p>
+    <div class="btns">
+      <a class="btn" href="mailto:oussama.jalleli@inrs.ca">Email me</a>
+      <a class="btn alt" href="https://www.linkedin.com/in/oussama-jalleli-b3bb65197">LinkedIn</a>
+      <a class="btn red" href="https://github.com/oussjalleli">GitHub</a>
+    </div>
+    <small>Gatineau, Québec, Canada</small>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var c=document.getElementById('rain'),x=c.getContext('2d'),fs=16,cols,drops;
+  var chars='アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ0123456789';
+  function size(){c.width=c.offsetWidth;c.height=c.offsetHeight;cols=Math.floor(c.width/fs);
+    drops=[];for(var i=0;i<cols;i++)drops.push(Math.random()*-40);x.fillStyle='#020806';x.fillRect(0,0,c.width,c.height)}
+  function draw(){
+    x.fillStyle='rgba(2,8,6,.08)';x.fillRect(0,0,c.width,c.height);
+    x.fillStyle='#00ff41';x.font=fs+'px monospace';
+    for(var i=0;i<cols;i++){
+      x.fillText(chars.charAt(Math.floor(Math.random()*chars.length)),i*fs,drops[i]*fs);
+      if(drops[i]*fs>c.height&&Math.random()>.975)drops[i]=0;
+      drops[i]++;
+    }
+  }
+  size();window.addEventListener('resize',size);
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){for(var k=0;k<140;k++)draw();}
+  else{setInterval(function(){if(!document.hidden)draw()},50);}
+})();
+</script>
+</body>
+</html>
